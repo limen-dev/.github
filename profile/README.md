@@ -62,23 +62,21 @@ $ limen request orders-prod --for 30m --reason "INC-123"
 flowchart LR
   user["👤 Engineers<br>🤖 CI jobs"]
   idp["Your identity<br>provider"]
-  subgraph limen ["Limen"]
-    direction TB
+  subgraph limen["Limen"]
     proxy["Proxy"]
     cp["Control plane"]
   end
-  subgraph net ["Your private network"]
-    direction TB
+  subgraph private["Your private network"]
     worker["Worker"]
     targets[("Servers, databases,<br>clusters, brokers")]
   end
   s3[("Audit in S3<br>signed, chained")]
-  user -- "1 · sign in" --> idp
-  user == "2 · ssh, psql, kubectl" ==> proxy
-  worker == "dials out" ==> proxy
+  user -->|"1 · sign in"| idp
+  user ==>|"2 · ssh, psql, kubectl"| proxy
+  worker ==>|"dials out"| proxy
   worker --> targets
-  cp -. "checks policy,<br>issues certificates" .- proxy
-  cp -. "writes" .-> s3
+  cp -.->|"policy, certificates"| proxy
+  cp -.->|"writes"| s3
 ```
 
 <p align="center"><sub>Nothing inside your network opens a port: the worker connects out to the proxy, and only the worker holds target credentials.</sub></p>
