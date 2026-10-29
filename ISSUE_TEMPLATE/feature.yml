@@ -1,0 +1,15 @@
+name: Feature
+description: Something this repository should do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What and why
+      description: The outcome you want, and who needs it.
+    validations: { required: true }
+  - type: textarea
+    id: done
+    attributes:
+      label: Done when
+      description: How we'll know it works.
