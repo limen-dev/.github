@@ -60,23 +60,21 @@ $ limen request orders-prod --for 30m --reason "INC-123"
 
 ```mermaid
 flowchart LR
-  user["👤 Engineers<br>🤖 CI jobs"]
-  idp["Your identity<br>provider"]
-  subgraph limen["Limen"]
-    proxy["Proxy"]
-    cp["Control plane"]
-  end
+  people["👤 Engineers<br>🤖 CI jobs"]
+  proxy["Limen proxy"]
   subgraph private["Your private network"]
-    worker["Worker"]
-    targets[("Servers, databases,<br>clusters, brokers")]
+    worker["Limen worker"]
+    targets[("Servers · databases<br>clusters · brokers")]
   end
-  s3[("Audit in S3<br>signed, chained")]
-  user -->|"1 · sign in"| idp
-  user ==>|"2 · ssh, psql, kubectl"| proxy
-  worker ==>|"dials out"| proxy
-  worker --> targets
-  cp -.->|"policy, certificates"| proxy
-  cp -.->|"writes"| s3
+  cp["Limen control plane"]
+  idp["Your identity provider"]
+  s3[("Audit in S3<br>signed · chained")]
+  people ==>|"ssh, psql, kubectl"| proxy
+  proxy <==>|"tunnel opened<br>from inside"| worker
+  worker ==> targets
+  idp -.->|"who you are"| cp
+  cp -.->|"policy and<br>certificates"| proxy
+  cp -.->|"audit"| s3
 ```
 
 <p align="center"><sub>Nothing inside your network opens a port: the worker connects out to the proxy, and only the worker holds target credentials.</sub></p>
