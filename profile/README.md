@@ -64,7 +64,7 @@ flowchart LR
   proxy["Limen proxy"]
   subgraph private["Your private network"]
     worker["Limen worker"]
-    targets[("Servers · databases<br>clusters · brokers")]
+    targets[("Your servers<br>and databases")]
   end
   cp["Limen control plane"]
   idp["Your identity provider"]
