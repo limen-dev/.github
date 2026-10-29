@@ -60,13 +60,28 @@ $ limen request orders-prod --for 30m --reason "INC-123"
 
 ```mermaid
 flowchart LR
-  who["👤 Engineers<br>🤖 CI jobs"] -- sign in --> idp["Your identity provider<br><sub>Okta · Entra ID · any OIDC</sub>"]
-  who == "ssh · psql · kubectl" ==> proxy["Proxy<br><sub>the one public entry</sub>"]
-  cp["Control plane<br><sub>policy in Git · certificates</sub>"] -. policy .-> proxy
-  worker["Worker<br><sub>inside your network</sub>"] == dials out ==> proxy
-  worker --> targets[("SSH · databases · Kubernetes<br>brokers · web apps")]
-  worker -. signed audit .-> s3[("S3<br><sub>hash-chained</sub>")]
+  user["👤 Engineers<br>🤖 CI jobs"]
+  idp["Your identity<br>provider"]
+  subgraph limen ["Limen"]
+    direction TB
+    proxy["Proxy"]
+    cp["Control plane"]
+  end
+  subgraph net ["Your private network"]
+    direction TB
+    worker["Worker"]
+    targets[("Servers, databases,<br>clusters, brokers")]
+  end
+  s3[("Audit in S3<br>signed, chained")]
+  user -- "1 · sign in" --> idp
+  user == "2 · ssh, psql, kubectl" ==> proxy
+  worker == "dials out" ==> proxy
+  worker --> targets
+  cp -. "checks policy,<br>issues certificates" .- proxy
+  cp -. "writes" .-> s3
 ```
+
+<p align="center"><sub>Nothing inside your network opens a port: the worker connects out to the proxy, and only the worker holds target credentials.</sub></p>
 
 ## What it reaches
 
@@ -88,11 +103,11 @@ flowchart LR
 
 ## Repositories
 
-| | Repository | What it is |
-|---|---|---|
-| 🚪 | **[limen](https://github.com/limen-dev/limen)** | The control plane, proxy, worker and `limen` CLI, the web console, and the docs |
-| 🏗️ | **[terraform-provider-limen](https://github.com/limen-dev/terraform-provider-limen)** | Manage resources, roles and bots from Terraform or OpenTofu, through the management API |
-| 🍺 | **[homebrew-tap](https://github.com/limen-dev/homebrew-tap)** | `brew install limen-dev/tap/limen` |
+| Repository | What it is |
+|---|---|
+| **[limen](https://github.com/limen-dev/limen)** | The control plane, proxy, worker and `limen` CLI, the web console, and the docs |
+| **[terraform-provider-limen](https://github.com/limen-dev/terraform-provider-limen)** | Manage resources, roles and bots from Terraform or OpenTofu, through the management API |
+| **[homebrew-tap](https://github.com/limen-dev/homebrew-tap)** | `brew install limen-dev/tap/limen` |
 
 ## Where it stands
 
