@@ -1,7 +1,7 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg">
-    <img src="assets/logo.svg" alt="Limen" width="300">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/logo-dark.svg">
+    <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/logo.svg" alt="Limen" width="300">
   </picture>
 </p>
 
@@ -24,17 +24,17 @@
 <table>
   <tr>
     <td width="33%" valign="top">
-      <img src="assets/icons/key-round.svg" width="36" alt=""><br>
+      <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/icons/key-round.svg" width="36" alt=""><br>
       <b>Nothing long-lived</b><br>
       <sub>Each session gets a certificate that expires in an hour, or sooner if you choose. CI jobs sign in with their own OIDC token, so no person or pipeline keeps a key or a password.</sub>
     </td>
     <td width="33%" valign="top">
-      <img src="assets/icons/scroll-text.svg" width="36" alt=""><br>
+      <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/icons/scroll-text.svg" width="36" alt=""><br>
       <b>An audit you can verify</b><br>
       <sub>Every session is recorded or audited into signed, hash-chained batches. One command proves nothing was edited, reordered or removed. If audit can't be written, new sessions are refused.</sub>
     </td>
     <td width="33%" valign="top">
-      <img src="assets/icons/network.svg" width="36" alt=""><br>
+      <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/icons/network.svg" width="36" alt=""><br>
       <b>No inbound ports</b><br>
       <sub>Workers run next to your targets and dial out. Your servers and databases stay private, and only the worker ever holds their credentials.</sub>
     </td>
@@ -82,7 +82,7 @@ flowchart LR
 ## What it reaches
 
 <p align="center">
-  <img src="assets/icons/terminal.svg" height="34" alt="SSH" title="SSH">&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/icons/terminal.svg" height="34" alt="SSH" title="SSH">&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/postgresql" height="34" alt="PostgreSQL" title="PostgreSQL">&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/mysql" height="34" alt="MySQL" title="MySQL">&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/redis" height="34" alt="Redis and Valkey" title="Redis and Valkey">&nbsp;&nbsp;&nbsp;
@@ -92,7 +92,7 @@ flowchart LR
   <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/elasticsearch/white"><img src="https://cdn.simpleicons.org/elasticsearch" height="34" alt="Elasticsearch" title="Elasticsearch"></picture>&nbsp;&nbsp;&nbsp;
   <img src="https://cdn.simpleicons.org/rabbitmq" height="34" alt="RabbitMQ" title="RabbitMQ">&nbsp;&nbsp;&nbsp;
   <picture><source media="(prefers-color-scheme: dark)" srcset="https://cdn.simpleicons.org/apachekafka/white"><img src="https://cdn.simpleicons.org/apachekafka" height="34" alt="Kafka" title="Kafka"></picture>&nbsp;&nbsp;&nbsp;
-  <img src="assets/icons/globe.svg" height="34" alt="Internal web apps" title="Internal web apps">
+  <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/icons/globe.svg" height="34" alt="Internal web apps" title="Internal web apps">
 </p>
 
 <p align="center"><sub>SSH · PostgreSQL · MySQL · Redis and Valkey · Kubernetes · MongoDB · OpenSearch · Elasticsearch · RabbitMQ · Kafka · internal web apps · anything else over TCP<br>Works with your own servers and with the AWS managed services (RDS, Aurora, ElastiCache, EKS, MSK, Amazon MQ)</sub></p>
