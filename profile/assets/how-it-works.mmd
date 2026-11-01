@@ -1,0 +1,16 @@
+flowchart LR
+  people["👤 Engineers<br>🤖 CI jobs"]
+  proxy["Limen proxy"]
+  subgraph private["Your private network"]
+    worker["Limen worker"]
+    targets[("Your servers<br>and databases")]
+  end
+  cp["Limen control plane"]
+  idp["Your identity provider"]
+  s3[("Audit in S3<br>signed · chained")]
+  people ==>|"ssh, psql, kubectl"| proxy
+  proxy <==>|"tunnel opened<br>from inside"| worker
+  worker ==> targets
+  idp -.->|"who you are"| cp
+  cp -.->|"policy and<br>certificates"| proxy
+  cp -.->|"audit"| s3
