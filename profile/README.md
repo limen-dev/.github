@@ -58,24 +58,12 @@ $ limen request orders-prod --for 30m --reason "INC-123"
 
 ## How it works
 
-```mermaid
-flowchart LR
-  people["👤 Engineers<br>🤖 CI jobs"]
-  proxy["Limen proxy"]
-  subgraph private["Your private network"]
-    worker["Limen worker"]
-    targets[("Your servers<br>and databases")]
-  end
-  cp["Limen control plane"]
-  idp["Your identity provider"]
-  s3[("Audit in S3<br>signed · chained")]
-  people ==>|"ssh, psql, kubectl"| proxy
-  proxy <==>|"tunnel opened<br>from inside"| worker
-  worker ==> targets
-  idp -.->|"who you are"| cp
-  cp -.->|"policy and<br>certificates"| proxy
-  cp -.->|"audit"| s3
-```
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/how-it-works-dark.png">
+    <img src="https://raw.githubusercontent.com/limen-dev/.github/main/profile/assets/how-it-works-light.png" alt="Engineers and CI jobs connect to the Limen proxy. The Limen worker, inside your private network, opens a tunnel out to the proxy and reaches your servers and databases. The control plane gets identity from your identity provider, sends policy and certificates to the proxy, and writes the audit trail to S3, signed and chained." width="900">
+  </picture>
+</p>
 
 <p align="center"><sub>Nothing inside your network opens a port: the worker connects out to the proxy, and only the worker holds target credentials.</sub></p>
 
