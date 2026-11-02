@@ -90,6 +90,7 @@ $ limen request orders-prod --for 30m --reason "INC-123"
 | Repository | What it is |
 |---|---|
 | **[limen](https://github.com/limen-dev/limen)** | The control plane, proxy, worker and `limen` CLI, the web console, and the docs |
+| **[setup-limen](https://github.com/limen-dev/setup-limen)** | A GitHub Action that installs the `limen` CLI and logs a CI job in as a bot with its own OIDC token, so no secret is stored. *In development; not published yet* |
 | **[terraform-provider-limen](https://github.com/limen-dev/terraform-provider-limen)** | Manage resources, roles and bots from Terraform or OpenTofu, through the management API |
 | **[homebrew-tap](https://github.com/limen-dev/homebrew-tap)** | `brew install limen-dev/tap/limen` |
 
